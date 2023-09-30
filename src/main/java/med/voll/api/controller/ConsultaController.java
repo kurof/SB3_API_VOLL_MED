@@ -33,6 +33,7 @@ public class ConsultaController {
         System.out.println(datosAgendadoPaciente);
         return ResponseEntity.ok(new DatosAgendadoConsulta(
             datosAgendadoPaciente.id(), datosAgendadoPaciente.idPaciente(), 
-            datosAgendadoPaciente.idMedico(), datosAgendadoPaciente.fecha()));
+            datosAgendadoPaciente.idMedico(), datosAgendadoPaciente.fecha(),
+            datosAgendadoPaciente.especialidad()));
     }
 }
