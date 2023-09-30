@@ -28,6 +28,8 @@ public class ConsultaController {
 
         agendaServicio.agendar(datosAgendadoPaciente); //para guardar y validar
 
+        //probando el Git con VSCode
+        //falta agregar el atributo especialidad
         System.out.println(datosAgendadoPaciente);
         return ResponseEntity.ok(new DatosAgendadoConsulta(
             datosAgendadoPaciente.id(), datosAgendadoPaciente.idPaciente(), 
