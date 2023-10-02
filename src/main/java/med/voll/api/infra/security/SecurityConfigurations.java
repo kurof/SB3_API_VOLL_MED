@@ -30,7 +30,8 @@ public class SecurityConfigurations {
                 .authorizeHttpRequests(authorizeHttpRequests ->
                         authorizeHttpRequests.requestMatchers(HttpMethod.POST, "/login")
                         .permitAll() //para permitir los request en el login y generar token
-                        // .requestMatchers(HttpMethod.DELETE, "/medicos").hasRole("ADMIN")
+                        .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**")
+                        .permitAll()
                         // .requestMatchers(HttpMethod.DELETE, "/pacientes").hasRole("ADMIN")
                         .anyRequest().authenticated()) //autenticar request que NO van a login
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class) 

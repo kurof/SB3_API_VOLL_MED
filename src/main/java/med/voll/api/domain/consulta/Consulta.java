@@ -2,7 +2,10 @@ package med.voll.api.domain.consulta;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.api.domain.medico.Especialidad;
 import med.voll.api.domain.medico.Medico;
 import med.voll.api.domain.paciente.Paciente;
 
@@ -39,6 +43,24 @@ public class Consulta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
-
     private LocalDateTime fecha;
+    private Especialidad especialidad;
+
+    //para la cancelacion
+    @Column(name = "motivo_cancelacion")
+    @Enumerated(EnumType.STRING)
+    private MotivoCancelacion motivoCancelacion;
+
+    //constructor de consulta para pasar solo los datos que queremos mostrar
+    public Consulta(Medico medico, Paciente paciente, LocalDateTime fecha){
+        
+        this.medico = medico;
+        this.paciente = paciente;
+        this.fecha = fecha;
+    }
+
+    //para cancelar
+    public void cancelar(MotivoCancelacion motivo) {
+        this.motivoCancelacion = motivo;
+    }
 }

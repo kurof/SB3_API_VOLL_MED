@@ -1,0 +1,1 @@
+ALTER TABLE consultas ADD especialidad VARCHAR(100);
